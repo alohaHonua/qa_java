@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Alex extends Lion {
 
-    public Alex(String sex, Feline feline) throws Exception {
+    public Alex(Feline feline) throws Exception {
         super("Самец", feline);
     }
 
