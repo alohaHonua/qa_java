@@ -34,9 +34,10 @@ public class LionTest {
     public void getFoodForLionReturnsMeatTest() throws Exception {
         Lion lion = new Lion("Самец", feline);
         lion.getFood();
+        List<String> Meat = List.of("Животные", "Птицы", "Рыба");
         Mockito.verify(feline, Mockito.times(1)).getFood(Mockito.anyString());
-        Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
-        Assert.assertEquals(List.of("Животные", "Птицы", "Рыба"), lion.getFood());
+        Mockito.when(feline.getFood("Хищник")).thenReturn(Meat);
+        Assert.assertEquals(Meat, lion.getFood());
     }
 
     @Test
