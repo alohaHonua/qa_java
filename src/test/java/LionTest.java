@@ -15,28 +15,23 @@ public class LionTest {
     @Mock
     Feline feline;
 
-    @Test (expected = Exception.class)
+    @Test
     public void doesLionHasManeThrowsExceptionTest() throws Exception {
-        try
-        {
+        String message = "Используйте допустимые значения пола животного - самец или самка";
+        Exception exception = assertThrows(Exception.class, () -> {
             Lion lion = new Lion("1", feline);
-        }
-        catch(Exception exception)
-        {
-            String message = "Используйте допустимые значения пола животного - самец или самка";
-            assertEquals(message, exception.getMessage());
-            throw exception;
-        }
-        fail("Wrong argument exception did not throw!");
+        });
+        assertEquals(message, exception.getMessage());
     }
 
     @Test
     public void getFoodForLionReturnsMeatTest() throws Exception {
         Lion lion = new Lion("Самец", feline);
         lion.getFood();
+        List<String> Meat = List.of("Животные", "Птицы", "Рыба");
         Mockito.verify(feline, Mockito.times(1)).getFood(Mockito.anyString());
-        Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
-        Assert.assertEquals(List.of("Животные", "Птицы", "Рыба"), lion.getFood());
+        Mockito.when(feline.getFood("Хищник")).thenReturn(Meat);
+        Assert.assertEquals(Meat, lion.getFood());
     }
 
     @Test
