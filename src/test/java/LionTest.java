@@ -15,19 +15,13 @@ public class LionTest {
     @Mock
     Feline feline;
 
-    @Test (expected = Exception.class)
+    @Test
     public void doesLionHasManeThrowsExceptionTest() throws Exception {
-        try
-        {
+        String message = "Используйте допустимые значения пола животного - самец или самка";
+        Exception exception = assertThrows(Exception.class, () -> {
             Lion lion = new Lion("1", feline);
-        }
-        catch(Exception exception)
-        {
-            String message = "Используйте допустимые значения пола животного - самец или самка";
-            assertEquals(message, exception.getMessage());
-            throw exception;
-        }
-        fail("Wrong argument exception did not throw!");
+        });
+        assertEquals(message, exception.getMessage());
     }
 
     @Test
